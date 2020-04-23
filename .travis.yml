@@ -20,3 +20,15 @@ after_success:
     - docker push nathzi1505/multidockertutorial-nginx
     - docker push nathzi1505/multidockertutorial-server
     - docker push nathzi1505/multidockertutorial-worker
+deploy:
+    edge: true,
+    provider: elasticbeanstalk
+    region: "ap-south-1"
+    app: "multi-docker-tutorial"
+    env: "MultiDockerTutorial-env"
+    bucket_name: "elasticbeanstalk-ap-south-1-994437792464"
+    bucket_path: "multi-docker-tutorial"
+    on:
+        branch: master
+    access_key_id: "$AWS_ACCESS_KEY"
+    secret_access_key: "$AWS_SECRET_KEY"

@@ -1,0 +1,34 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "nathzi1505/multidockertutorial-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "server",
+            "image": "nathzi1505/multidockertutorial-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "nathzi1505/multidockertutorial-worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "nathzi1505/multidockertutorial-nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["client", "server"]
+        }
+    ]
+}
